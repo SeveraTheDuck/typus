@@ -24,24 +24,12 @@
 */
 var NAVTREE =
 [
-  [ "C++23 Template Project", "index.html", [
-    [ "C++ Project Template", "index.html", "index" ],
-    [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
-      [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ]
-      ] ]
-    ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
-    ] ]
-  ] ]
+  [ "Typus", "index.html", ]
 ];
 
 var NAVTREEINDEX =
 [
-"dir_3a8cc7b4a5b6c6c34bdb15114d7ff3d2.html"
+"index.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
