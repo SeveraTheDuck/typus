@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.28...3.30 FATAL_ERROR)
 set(PRJ_NAMESPACE "severa")
 
 project(
-  project_name
+  typus
   VERSION 0.1.0
   LANGUAGES CXX
 )

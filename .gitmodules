@@ -1,3 +1,0 @@
-[submodule "profiling/flamegraph"]
-	path = profiling/flamegraph
-	url = https://github.com/brendangregg/FlameGraph

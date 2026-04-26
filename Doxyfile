@@ -1,4 +1,4 @@
-PROJECT_NAME           = "C++23 Template Project"
+PROJECT_NAME           = "Typus"
 OUTPUT_DIRECTORY       = docs_output
 INPUT                  = source/ README.md
 RECURSIVE              = YES

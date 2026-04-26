@@ -25,7 +25,7 @@
       "inherits": "base",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "project_name_ENABLE_LTO": "ON"
+        "TYPUS_ENABLE_LTO": "ON"
       }
     },
     {
@@ -46,8 +46,8 @@
       "name": "base-asan",
       "hidden": true,
       "cacheVariables": {
-        "project_name_ENABLE_ASAN": "ON",
-        "project_name_ENABLE_UBSAN": "ON"
+        "TYPUS_ENABLE_ASAN": "ON",
+        "TYPUS_ENABLE_UBSAN": "ON"
       }
     },
     {
@@ -93,7 +93,7 @@
       "inherits": "base-debug",
       "displayName": "TSan",
       "cacheVariables": {
-        "project_name_ENABLE_TSAN": "ON"
+        "TYPUS_ENABLE_TSAN": "ON"
       }
     },
     {
@@ -102,7 +102,7 @@
       "displayName": "RelWithDebInfo (profiling)",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-        "project_name_ENABLE_WORKLOADS": "ON"
+        "TYPUS_ENABLE_WORKLOADS": "ON"
       }
     },
     {
@@ -123,7 +123,7 @@
       "inherits": "base-release",
       "displayName": "Release (shared library)",
       "cacheVariables": {
-        "project_name_LIBRARY_TYPE": "SHARED"
+        "TYPUS_LIBRARY_TYPE": "SHARED"
       }
     },
     {
@@ -144,7 +144,7 @@
       "inherits": "base-debug",
       "displayName": "CI TSan",
       "cacheVariables": {
-        "project_name_ENABLE_TSAN": "ON"
+        "TYPUS_ENABLE_TSAN": "ON"
       }
     },
     {
