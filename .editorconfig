@@ -1,0 +1,36 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{sh,bash}]
+indent_size = 4
+
+[docs/**]
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+[*.json]
+insert_final_newline = true
+
+# CMake files are formatted by cmake-format
+[*.cmake]
+indent_size = unset
+indent_style = unset
+
+[profiling/flamegraph/**]
+indent_size = unset
+indent_style = unset
+trim_trailing_whitespace = unset
+insert_final_newline = unset
+
+[.gitmodules]
+indent_style = unset

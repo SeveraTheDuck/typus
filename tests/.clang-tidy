@@ -1,0 +1,5 @@
+---
+Checks: >
+  -readability-identifier-naming,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -cppcoreguidelines-special-member-functions

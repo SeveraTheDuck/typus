@@ -1,0 +1,15 @@
+{
+  "tests": [
+    {
+      "targets": [
+        "project_name_hello_tests",
+        "project_name_goodbye_tests"
+      ],
+      "presets": [
+        "ci-debug",
+        "ci-asan",
+        "ci-release"
+      ]
+    }
+  ]
+}

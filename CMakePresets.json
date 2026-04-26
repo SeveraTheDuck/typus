@@ -1,0 +1,281 @@
+{
+  "version": 8,
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_CXX_SCAN_FOR_MODULES": "OFF"
+      }
+    },
+    {
+      "name": "base-debug",
+      "hidden": true,
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "base-release",
+      "hidden": true,
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "project_name_ENABLE_LTO": "ON"
+      }
+    },
+    {
+      "name": "base-clang",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "base-gcc",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "g++"
+      }
+    },
+    {
+      "name": "base-asan",
+      "hidden": true,
+      "cacheVariables": {
+        "project_name_ENABLE_ASAN": "ON",
+        "project_name_ENABLE_UBSAN": "ON"
+      }
+    },
+    {
+      "name": "dev",
+      "inherits": "base-debug",
+      "displayName": "Debug"
+    },
+    {
+      "name": "dev-clang",
+      "inherits": [
+        "base-debug",
+        "base-clang"
+      ],
+      "displayName": "Debug (Clang)"
+    },
+    {
+      "name": "dev-gcc",
+      "inherits": [
+        "base-debug",
+        "base-gcc"
+      ],
+      "displayName": "Debug (GCC)"
+    },
+    {
+      "name": "asan",
+      "inherits": [
+        "base-debug",
+        "base-asan"
+      ],
+      "displayName": "ASan + UBSan"
+    },
+    {
+      "name": "asan-clang",
+      "inherits": [
+        "base-debug",
+        "base-asan",
+        "base-clang"
+      ],
+      "displayName": "ASan + UBSan (Clang)"
+    },
+    {
+      "name": "tsan",
+      "inherits": "base-debug",
+      "displayName": "TSan",
+      "cacheVariables": {
+        "project_name_ENABLE_TSAN": "ON"
+      }
+    },
+    {
+      "name": "profile",
+      "inherits": "base",
+      "displayName": "RelWithDebInfo (profiling)",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "project_name_ENABLE_WORKLOADS": "ON"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "base-release",
+      "displayName": "Release"
+    },
+    {
+      "name": "release-clang",
+      "inherits": [
+        "base-release",
+        "base-clang"
+      ],
+      "displayName": "Release (Clang)"
+    },
+    {
+      "name": "release-shared",
+      "inherits": "base-release",
+      "displayName": "Release (shared library)",
+      "cacheVariables": {
+        "project_name_LIBRARY_TYPE": "SHARED"
+      }
+    },
+    {
+      "name": "ci-debug",
+      "inherits": "base-debug",
+      "displayName": "CI Debug"
+    },
+    {
+      "name": "ci-asan",
+      "inherits": [
+        "base-debug",
+        "base-asan"
+      ],
+      "displayName": "CI ASan + UBSan"
+    },
+    {
+      "name": "ci-tsan",
+      "inherits": "base-debug",
+      "displayName": "CI TSan",
+      "cacheVariables": {
+        "project_name_ENABLE_TSAN": "ON"
+      }
+    },
+    {
+      "name": "ci-release",
+      "inherits": "base-release",
+      "displayName": "CI Release"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "dev",
+      "configurePreset": "dev"
+    },
+    {
+      "name": "dev-clang",
+      "configurePreset": "dev-clang"
+    },
+    {
+      "name": "dev-gcc",
+      "configurePreset": "dev-gcc"
+    },
+    {
+      "name": "asan",
+      "configurePreset": "asan"
+    },
+    {
+      "name": "asan-clang",
+      "configurePreset": "asan-clang"
+    },
+    {
+      "name": "tsan",
+      "configurePreset": "tsan"
+    },
+    {
+      "name": "profile",
+      "configurePreset": "profile"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "release-clang",
+      "configurePreset": "release-clang"
+    },
+    {
+      "name": "release-shared",
+      "configurePreset": "release-shared"
+    },
+    {
+      "name": "ci-debug",
+      "configurePreset": "ci-debug"
+    },
+    {
+      "name": "ci-asan",
+      "configurePreset": "ci-asan"
+    },
+    {
+      "name": "ci-tsan",
+      "configurePreset": "ci-tsan"
+    },
+    {
+      "name": "ci-release",
+      "configurePreset": "ci-release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "base-test",
+      "hidden": true,
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error"
+      }
+    },
+    {
+      "name": "dev",
+      "inherits": "base-test",
+      "configurePreset": "dev"
+    },
+    {
+      "name": "dev-clang",
+      "inherits": "base-test",
+      "configurePreset": "dev-clang"
+    },
+    {
+      "name": "dev-gcc",
+      "inherits": "base-test",
+      "configurePreset": "dev-gcc"
+    },
+    {
+      "name": "asan",
+      "inherits": "base-test",
+      "configurePreset": "asan"
+    },
+    {
+      "name": "asan-clang",
+      "inherits": "base-test",
+      "configurePreset": "asan-clang"
+    },
+    {
+      "name": "tsan",
+      "inherits": "base-test",
+      "configurePreset": "tsan"
+    },
+    {
+      "name": "release",
+      "inherits": "base-test",
+      "configurePreset": "release"
+    },
+    {
+      "name": "ci-debug",
+      "inherits": "base-test",
+      "configurePreset": "ci-debug"
+    },
+    {
+      "name": "ci-asan",
+      "inherits": "base-test",
+      "configurePreset": "ci-asan"
+    },
+    {
+      "name": "ci-tsan",
+      "inherits": "base-test",
+      "configurePreset": "ci-tsan"
+    },
+    {
+      "name": "ci-release",
+      "inherits": "base-test",
+      "configurePreset": "ci-release"
+    }
+  ]
+}
