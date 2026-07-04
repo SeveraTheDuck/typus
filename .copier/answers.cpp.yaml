@@ -1,0 +1,11 @@
+# Changes here will be overwritten by Copier
+_commit: v1.0.1
+_src_path: gh:SeveraTheDuck/templates-lang-cpp
+cmake_namespace: severa
+compiler_matrix: gcc
+cpp_standard: '26'
+enable_coverage: true
+enable_docs: true
+enable_profiling: false
+enable_sanitizers: true
+gcc_version: '16'

@@ -1,0 +1,8 @@
+# Changes here will be overwritten by Copier
+_commit: v1.1.2
+_src_path: gh:SeveraTheDuck/templates-base
+author: Alexander Antipov
+github_owner: SeveraTheDuck
+license: MIT
+project_description: C++26 header-only type metaprogramming library. Functional, pipeline-driven API, lazy evaluation
+project_name: typus
