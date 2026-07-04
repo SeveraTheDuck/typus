@@ -1,7 +1,15 @@
 {
   "suites": [
     {
-      "label": "typus_greeting_unit",
+      "label": "typus_make_unit",
+      "presets": ["dev", "dev-asan"]
+    },
+    {
+      "label": "typus_model_unit",
+      "presets": ["dev", "dev-asan"]
+    },
+    {
+      "label": "typus_combine_unit",
       "presets": ["dev", "dev-asan"]
     }
   ]

@@ -1,1 +1,4 @@
-add_subdirectory(greeting)
+add_subdirectory(make)
+add_subdirectory(model)
+add_subdirectory(terminate)
+add_subdirectory(combine)

@@ -11,3 +11,6 @@
 # target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_26)
 #
 # Leave empty if you have no custom options.
+
+target_compile_options(project_options INTERFACE -freflection)
+target_compile_features(project_options INTERFACE cxx_std_26)
