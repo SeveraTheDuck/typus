@@ -1,3 +1,8 @@
+/**
+ * @file drop.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that removes the first N elements from the pipeline.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -42,6 +47,20 @@ struct Drop final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Discards the first N types from the pipeline.
+ *
+ * If N is greater than or equal to the total number of elements, the resulting
+ * pipeline will be empty (a zero-element Thunk).
+ *
+ * @tparam N The number of elements to drop.
+ *
+ * @par Example
+ * @code
+ * // Thunk<float, double>
+ * constexpr auto p = typus::From<int, float, double> | typus::Drop<1>;
+ * @endcode
+ */
 template <std::size_t N>
 inline constexpr auto Drop = detail::Drop<N>{};
 

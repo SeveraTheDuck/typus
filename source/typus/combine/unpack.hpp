@@ -1,3 +1,8 @@
+/**
+ * @file unpack.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that unpacks nested template arguments into the pipeline.
+ */
 #pragma once
 
 #include "flatten.hpp"
@@ -52,6 +57,18 @@ struct Unpack final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Extracts types from template instantiations (e.g., std::tuple<A, B> -> A, B).
+ *
+ * Expects the pipeline to contain template instantiations. Unpacks the nested
+ * arguments into a flat, single-level pipeline.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<std::tuple<int, float>> | typus::Unpack;
+ * // Result: Thunk<int, float>
+ * @endcode
+ */
 inline constexpr auto Unpack = detail::Unpack{};
 
 }  // namespace typus

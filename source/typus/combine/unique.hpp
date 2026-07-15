@@ -1,3 +1,8 @@
+/**
+ * @file unique.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that removes duplicate types from the pipeline.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -46,6 +51,17 @@ struct Unique final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Removes duplicate types from the pipeline.
+ *
+ * Keeps only the first occurrence of each type, preserving original order.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int, float, int, double> | typus::Unique;
+ * // Result: Thunk<int, float, double>
+ * @endcode
+ */
 inline constexpr auto Unique = detail::Unique{};
 
 }  // namespace typus

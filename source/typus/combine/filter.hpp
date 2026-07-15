@@ -1,3 +1,8 @@
+/**
+ * @file filter.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that filters elements based on a type-level predicate.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -50,6 +55,20 @@ struct Filter final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Keeps only the types in the pipeline that satisfy the given predicate.
+ *
+ * Uses C++26 reflection to evaluate the predicate efficiently without
+ * recursive template instantiations.
+ *
+ * @tparam Predicate The combinator used as the filtering condition.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int, float, int> | typus::Filter<typus::Is<std::is_integral>>;
+ * // Result: Thunk<int, int>
+ * @endcode
+ */
 template <model::Combinator auto Predicate>
 inline constexpr auto Filter = detail::Filter<Predicate>{};
 

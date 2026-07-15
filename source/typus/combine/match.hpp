@@ -1,3 +1,8 @@
+/**
+ * @file match.hpp
+ * @author SeveraTheDuck
+ * @brief Pattern matching combinator for type transformation.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -9,10 +14,14 @@
 
 #include <algorithm>
 #include <array>
+#include <concepts>
 #include <cstddef>
 
 namespace typus {
 
+/**
+ * @brief A branch in a Match expression.
+ */
 template <model::Combinator auto Predicate, typename R>
 struct Case final {
   template <typename T>
@@ -21,6 +30,9 @@ struct Case final {
   using Type = R;
 };
 
+/**
+ * @brief The fallback branch in a Match expression.
+ */
 template <typename R>
 struct Default final {
   template <typename>
@@ -54,7 +66,7 @@ struct FirstMatch {
   static_assert(FirstHit < NumOfCases, "typus::Match: no case matched and no Default provided");
 
  public:
-  using Type = Cases...[FirstHit] ::Type;
+  using Type = typename Cases...[FirstHit] ::Type;
 };
 
 template <typename... Cases>
@@ -76,6 +88,41 @@ struct Match final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Performs pattern matching to transform a single type.
+ *
+ * Evaluates the provided type against a series of `Case` predicates in order.
+ * Replaces the input type with the `Type` of the first matching `Case`.
+ * If no `Case` matches and a `Default` branch is provided, it yields the
+ * `Default` type. If no branch matches, a compilation error is triggered.
+ *
+ * @tparam Cases The `Case` or `Default` branches.
+ *
+ * @par Example
+ * @code
+ * constexpr auto pipeline = typus::Match
+ * <
+ *   typus::Case<typus::Is<std::is_integral>, long>,
+ *   typus::Default<char>
+ * >;
+ *
+ * using T1 = typus::Get<typus::From<int> | pipeline>;    // long
+ * using T2 = typus::Get<typus::From<float> | pipeline>;  // char
+ * @endcode
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int, float, double> | typus::Map
+ * <
+ *   typus::Match
+ *   <
+ *     typus::Case<typus::Is<std::is_integral>, long>,
+ *     typus::Default<char>
+ *   >
+ * >;
+ * // Result: Thunk<long, char, char>
+ * @endcode
+ */
 template <typename... Cases>
 inline constexpr auto Match = detail::Match<Cases...>{};
 

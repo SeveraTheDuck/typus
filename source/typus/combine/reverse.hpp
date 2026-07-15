@@ -1,3 +1,8 @@
+/**
+ * @file reverse.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that reverses the order of types in the pipeline.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -38,6 +43,15 @@ struct Reverse final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Reverses the sequence of types currently in the pipeline.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int, float, double> | typus::Reverse;
+ * // Result: Thunk<double, float, int>
+ * @endcode
+ */
 inline constexpr auto Reverse = detail::Reverse{};
 
 }  // namespace typus

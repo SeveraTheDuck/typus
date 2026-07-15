@@ -1,3 +1,8 @@
+/**
+ * @file at.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that extracts a type at a specific index.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -28,6 +33,19 @@ struct At final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Extracts the element at the specified zero-based index.
+ *
+ * The extracted type is wrapped in a `base::Singleton`. This combinator will
+ * cause a compilation error if the index is out of bounds.
+ *
+ * @tparam N The index of the type to extract.
+ *
+ * @par Example
+ * @code
+ * using T = typus::Get<typus::From<int, float, double> | typus::At<1>>; // float
+ * @endcode
+ */
 template <std::size_t N>
 inline constexpr auto At = detail::At<N>{};
 

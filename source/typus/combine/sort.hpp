@@ -1,4 +1,8 @@
-// typus/combine/sort.hpp
+/**
+ * @file sort.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator family for sorting types via C++26 reflection.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -10,6 +14,7 @@
 #include <typus/details/to_array.hpp>
 
 #include <algorithm>
+#include <functional>
 #include <meta>
 
 namespace typus {
@@ -41,13 +46,52 @@ struct SortBy final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Sorts the pipeline using a custom comparator and projection.
+ *
+ * Functions provided must operate on `std::meta::info` at compile-time.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int, char, double> | typus::SortBy<std::ranges::less{},
+ * std::meta::size_of>;
+ * // Result: Thunk<char, int, double>
+ * @endcode
+ */
 template <auto Cmp = std::ranges::less{}, auto Proj = std::identity{}>
 inline constexpr auto SortBy = detail::SortBy<Cmp, Proj>{};
 
+/**
+ * @brief Sorts the pipeline by type size in ascending order.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<double, char, int> | typus::SortBySize;
+ * // Result: Thunk<char, int, double>
+ * @endcode
+ */
 inline constexpr auto SortBySize = detail::SortBy<std::ranges::less{}, std::meta::size_of>{};
 
+/**
+ * @brief Sorts the pipeline by type size in descending order.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<char, double, int> | typus::SortBySizeDec;
+ * // Result: Thunk<double, int, char>
+ * @endcode
+ */
 inline constexpr auto SortBySizeDec = detail::SortBy<std::ranges::greater{}, std::meta::size_of>{};
 
+/**
+ * @brief Sorts the pipeline by type alignment requirement in ascending order.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<double, char> | typus::SortByAlignment;
+ * // Result: Thunk<char, double>
+ * @endcode
+ */
 inline constexpr auto SortByAlignment =
     detail::SortBy<std::ranges::less{}, std::meta::alignment_of>{};
 

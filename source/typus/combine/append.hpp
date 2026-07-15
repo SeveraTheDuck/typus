@@ -1,3 +1,8 @@
+/**
+ * @file append.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that appends new types to the end of the pipeline.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -27,6 +32,17 @@ struct Append final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Appends the specified types to the end of the current pipeline.
+ *
+ * @tparam Us The types to append.
+ *
+ * @par Example
+ * @code
+ * // Thunk<int, float, double>
+ * constexpr auto p = typus::From<int> | typus::Append<float, double>;
+ * @endcode
+ */
 template <typename... Us>
 inline constexpr auto Append = detail::Append<Us...>{};
 

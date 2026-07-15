@@ -1,3 +1,8 @@
+/**
+ * @file zip.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that zips two pipelines into a pipeline of pairs.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -40,6 +45,19 @@ struct Zip final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Pairs types from two pipelines index-wise.
+ *
+ * Stops at the length of the shorter pipeline.
+ *
+ * @tparam Other The anchored pipeline to zip with.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int, double> | typus::Zip<typus::From<float, char>>;
+ * // Result: Thunk<Pair<int, float>, Pair<double, char>>
+ * @endcode
+ */
 template <model::Anchored auto Other>
 inline constexpr auto Zip = detail::Zip<Other>{};
 

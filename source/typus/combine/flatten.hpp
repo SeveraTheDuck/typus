@@ -1,3 +1,8 @@
+/**
+ * @file flatten.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that merges a pipeline of thunks into a single flat thunk.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -49,6 +54,19 @@ struct Flatten final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Merges nested Thunks into a single, flat Thunk.
+ *
+ * All types currently in the pipeline must themselves be Thunks. This is
+ * commonly used after mapping a function that produces multiple types per element.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<typus::base::Thunk<int>, typus::base::Thunk<float>> |
+ * typus::Flatten;
+ * // Result: Thunk<int, float>
+ * @endcode
+ */
 inline constexpr auto Flatten = detail::Flatten{};
 
 }  // namespace typus

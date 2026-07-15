@@ -1,3 +1,8 @@
+/**
+ * @file bind.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that performs a Cartesian product with another pipeline.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -56,6 +61,20 @@ struct Bind final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Combines each type in the current pipeline with every type in another pipeline.
+ *
+ * This performs a type-level Cartesian product. The result is a single flattened
+ * pipeline containing `base::Pair<L, R>` elements.
+ *
+ * @tparam Other The anchored pipeline to bind against.
+ *
+ * @par Example
+ * @code
+ * // Thunk<Pair<int, double>, Pair<int, char>>
+ * constexpr auto p = typus::From<int> | typus::Bind<typus::From<double, char>>;
+ * @endcode
+ */
 template <model::Anchored auto Other>
 inline constexpr auto Bind = detail::Bind<Other>{};
 

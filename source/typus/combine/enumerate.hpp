@@ -1,3 +1,8 @@
+/**
+ * @file enumerate.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that pairs each type with its zero-based index.
+ */
 #pragma once
 
 #include "zip.hpp"
@@ -32,6 +37,18 @@ struct Enumerate final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Zips each element in the pipeline with its index.
+ *
+ * The resulting pipeline contains `base::Pair<T, Index>` elements, where
+ * `Index` is an `std::integral_constant<std::size_t, N>`.
+ *
+ * @par Example
+ * @code
+ * // Thunk<Pair<int, 0>, Pair<float, 1>>
+ * constexpr auto p = typus::From<int, float> | typus::Enumerate;
+ * @endcode
+ */
 inline constexpr auto Enumerate = detail::Enumerate{};
 
 }  // namespace typus

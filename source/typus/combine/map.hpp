@@ -1,3 +1,8 @@
+/**
+ * @file map.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that applies a pipeline to each element individually.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -34,12 +39,16 @@ struct Map final : tag::Combinator {
 }  // namespace detail
 
 /**
- * Usage: typus::From<int&, double>
- *        | typus::Map
- *          <
- *            typus::Fn<std::remove_cvref> |
- *            typus::Fn<std::add_pointer>
- *          >
+ * @brief Transforms each type in the pipeline by applying another pipeline to it.
+ *
+ * @tparam Pipeline The combinator pipeline to apply to each element.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int&, double>
+ *                  | typus::Map<typus::Fn<std::remove_reference> | typus::Fn<std::add_pointer>>;
+ * // Result: Thunk<int*, double*>
+ * @endcode
  */
 template <model::Combinator auto Pipeline>
 inline constexpr auto Map = detail::Map<Pipeline>{};

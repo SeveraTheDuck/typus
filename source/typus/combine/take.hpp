@@ -1,3 +1,8 @@
+/**
+ * @file take.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that takes the first N elements from the pipeline.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -42,6 +47,15 @@ struct Take final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Discards all but the first N types from the pipeline.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int, float, double> | typus::Take<2>;
+ * // Result: Thunk<int, float>
+ * @endcode
+ */
 template <std::size_t N>
 inline constexpr auto Take = detail::Take<N>{};
 

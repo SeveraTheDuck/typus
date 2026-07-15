@@ -1,3 +1,8 @@
+/**
+ * @file split_by.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that splits the pipeline into chunks separated by a predicate.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -55,6 +60,21 @@ struct SplitBy final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Splits the pipeline into multiple Thunks using a predicate as a delimiter.
+ *
+ * The element that matches the predicate is discarded, acting as the boundary
+ * between the new chunks.
+ *
+ * @tparam Predicate The condition identifying the split boundaries.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<int, float, void, double> |
+ * typus::SplitBy<typus::Is<std::is_void>>;
+ * // Result: Thunk<Thunk<int, float>, Thunk<double>>
+ * @endcode
+ */
 template <model::Combinator auto Predicate>
 inline constexpr auto SplitBy = detail::SplitBy<Predicate>{};
 

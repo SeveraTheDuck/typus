@@ -1,3 +1,8 @@
+/**
+ * @file concat.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that concatenates two pipelines.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -30,7 +35,19 @@ struct Concat final : tag::Combinator {
 
 }  // namespace detail
 
-/// From<A, B> | Concat<From<C, D>>  ->  Thunk<A, B, C, D>
+/**
+ * @brief Appends the results of another pipeline to the end of the current one.
+ *
+ * Example: `From<A, B> | Concat<From<C, D>>` evaluates to `Thunk<A, B, C, D>`.
+ *
+ * @tparam Other The anchored pipeline whose types should be concatenated.
+ *
+ * @par Example
+ * @code
+ * // Thunk<int, float, double>
+ * constexpr auto p = typus::From<int> | typus::Concat<typus::From<float, double>>;
+ * @endcode
+ */
 template <model::Anchored auto Other>
 inline constexpr auto Concat = detail::Concat<Other>{};
 

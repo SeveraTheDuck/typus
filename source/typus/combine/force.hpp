@@ -1,3 +1,8 @@
+/**
+ * @file force.hpp
+ * @author SeveraTheDuck
+ * @brief Core execution engine that folds the AST and forces pipeline evaluation.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -33,6 +38,13 @@ struct Force final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Eagerly evaluates a composed AST Chain.
+ *
+ * Recursively traverses the pipeline nodes, passing intermediate types from
+ * the left-hand side into the right-hand side operations. Used internally by
+ * eager utilities like `Get`, `Materialize`, and other terminators.
+ */
 inline constexpr auto Force = detail::Force{};
 
 }  // namespace typus

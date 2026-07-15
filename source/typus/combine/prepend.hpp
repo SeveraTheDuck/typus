@@ -1,3 +1,8 @@
+/**
+ * @file prepend.hpp
+ * @author SeveraTheDuck
+ * @brief Combinator that adds new types to the beginning of the pipeline.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -27,6 +32,17 @@ struct Prepend final : tag::Combinator {
 
 }  // namespace detail
 
+/**
+ * @brief Inserts the specified types at the front of the current pipeline.
+ *
+ * @tparam Us The types to prepend.
+ *
+ * @par Example
+ * @code
+ * constexpr auto p = typus::From<float, double> | typus::Prepend<int>;
+ * // Result: Thunk<int, float, double>
+ * @endcode
+ */
 template <typename... Us>
 inline constexpr auto Prepend = detail::Prepend<Us...>{};
 
