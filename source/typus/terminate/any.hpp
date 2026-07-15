@@ -1,3 +1,8 @@
+/**
+ * @file any.hpp
+ * @author SeveraTheDuck
+ * @brief Eager terminator that checks if at least one element satisfies a predicate.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -30,6 +35,14 @@ struct Any final : tag::ValueTerminator {
 
 }  // namespace detail
 
+/**
+ * @brief Evaluates whether at least one type in the pipeline satisfies the given predicate.
+ *
+ * This is an eager terminator. When piped into, it triggers evaluation and
+ * returns a boolean value. Returns false for an empty pipeline.
+ *
+ * @tparam Predicate The combinator used as the condition for each type.
+ */
 template <model::Combinator auto Predicate>
 inline constexpr auto Any = detail::Any<Predicate>{};
 

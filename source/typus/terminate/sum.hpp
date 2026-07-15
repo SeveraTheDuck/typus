@@ -1,3 +1,8 @@
+/**
+ * @file sum.hpp
+ * @author SeveraTheDuck
+ * @brief Eager terminator that calculates the sum of numeric type-level values.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -35,6 +40,12 @@ struct Sum final : tag::ValueTerminator {
 
 }  // namespace detail
 
+/**
+ * @brief Adds the numeric values exposed by the types in the pipeline.
+ *
+ * The return type is automatically deduced from the values being summed.
+ * If the pipeline is empty, defaults to returning `std::size_t{0}`.
+ */
 inline constexpr auto Sum = detail::Sum{};
 
 }  // namespace typus

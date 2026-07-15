@@ -1,10 +1,16 @@
+/**
+ * @file size.hpp
+ * @author SeveraTheDuck
+ * @brief Eager terminator that calculates the number of elements in the pipeline.
+ */
 #pragma once
 
 #include "tag.hpp"
 
-#include <typus/model/thunk.hpp>
 #include <typus/base/thunk.hpp>
+#include <typus/model/thunk.hpp>
 
+#include <cstddef>
 #include <type_traits>
 
 namespace typus {
@@ -26,6 +32,12 @@ struct Size final : tag::ValueTerminator {
 
 }  // namespace detail
 
+/**
+ * @brief Returns the total number of types currently held in the pipeline.
+ *
+ * This eager terminator forces the evaluation of the AST and returns a
+ * compile-time integer representing the count of the resulting types.
+ */
 inline constexpr auto Size = detail::Size{};
 
 }  // namespace typus

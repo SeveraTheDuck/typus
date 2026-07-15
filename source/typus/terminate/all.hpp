@@ -1,3 +1,8 @@
+/**
+ * @file all.hpp
+ * @author SeveraTheDuck
+ * @brief Eager terminator that checks if all elements satisfy a predicate.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -30,6 +35,14 @@ struct All final : tag::ValueTerminator {
 
 }  // namespace detail
 
+/**
+ * @brief Evaluates whether all types in the pipeline satisfy the given predicate.
+ *
+ * This is an eager terminator. When piped into, it triggers evaluation and
+ * returns a boolean value. Returns true for an empty pipeline.
+ *
+ * @tparam Predicate The combinator used as the condition for each type.
+ */
 template <model::Combinator auto Predicate>
 inline constexpr auto All = detail::All<Predicate>{};
 

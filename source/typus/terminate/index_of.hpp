@@ -1,3 +1,8 @@
+/**
+ * @file index_of.hpp
+ * @author SeveraTheDuck
+ * @brief Eager terminator that finds the index of a specific type.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -9,6 +14,7 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <meta>
 #include <type_traits>
 
 namespace typus {
@@ -38,6 +44,14 @@ struct IndexOf final : tag::ValueTerminator {
 
 }  // namespace detail
 
+/**
+ * @brief Finds the zero-based index of the first occurrence of a type.
+ *
+ * This eager terminator evaluates the pipeline and returns the index. If the
+ * type is not found, the returned index equals the size of the pipeline.
+ *
+ * @tparam U The type to search for.
+ */
 template <typename U>
 inline constexpr auto IndexOf = detail::IndexOf<U>{};
 
