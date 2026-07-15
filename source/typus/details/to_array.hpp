@@ -12,7 +12,7 @@ namespace typus::detail {
 
 template <typename... Ts>
 [[nodiscard]] consteval auto ToArray() noexcept {
-  return std::array{^^Ts...};
+  return std::array<std::meta::info, sizeof...(Ts)>{^^Ts...};
 }
 
 }  // namespace typus::detail
