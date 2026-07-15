@@ -20,6 +20,12 @@ namespace typus {
  * or `At<N>`.
  *
  * @tparam Pipeline The anchored pipeline expression to evaluate.
+ *
+ * @par Example
+ * @code
+ * using Tuple = typus::Materialize<typus::From<int, float> | typus::Reverse>;
+ * using T = Tuple::At<0>; // float
+ * @endcode
  */
 template <model::Anchored auto Pipeline>
 using Materialize = base::TypeTuple<detail::Finalize<Pipeline>>;

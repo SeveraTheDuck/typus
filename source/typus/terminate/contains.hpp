@@ -47,6 +47,11 @@ struct Contains final : tag::ValueTerminator {
  * the search without recursive template instantiation.
  *
  * @tparam U The type to search for.
+ *
+ * @par Example
+ * @code
+ * constexpr bool has_float = typus::From<int, double> | typus::Contains<float>; // false
+ * @endcode
  */
 template <typename U>
 inline constexpr auto Contains = detail::Contains<U>{};

@@ -45,6 +45,13 @@ struct Sum final : tag::ValueTerminator {
  *
  * The return type is automatically deduced from the values being summed.
  * If the pipeline is empty, defaults to returning `std::size_t{0}`.
+ *
+ * @par Example
+ * @code
+ * using V2 = std::integral_constant<int, 2>;
+ * using V3 = std::integral_constant<int, 3>;
+ * constexpr auto total = typus::From<V2, V3> | typus::Sum; // 5
+ * @endcode
  */
 inline constexpr auto Sum = detail::Sum{};
 

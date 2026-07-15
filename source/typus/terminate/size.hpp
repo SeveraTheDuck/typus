@@ -37,6 +37,11 @@ struct Size final : tag::ValueTerminator {
  *
  * This eager terminator forces the evaluation of the AST and returns a
  * compile-time integer representing the count of the resulting types.
+ *
+ * @par Example
+ * @code
+ * constexpr auto count = typus::From<int, float, double> | typus::Size; // 3
+ * @endcode
  */
 inline constexpr auto Size = detail::Size{};
 

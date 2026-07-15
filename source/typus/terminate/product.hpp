@@ -45,6 +45,13 @@ struct Product final : tag::ValueTerminator {
  *
  * This eager terminator expects the types in the pipeline to expose a static
  * constant value (via `::value` or `::Value`). It folds them using multiplication.
+ *
+ * @par Example
+ * @code
+ * using V2 = std::integral_constant<int, 2>;
+ * using V3 = std::integral_constant<int, 3>;
+ * constexpr auto res = typus::From<V2, V3> | typus::Product; // 6
+ * @endcode
  */
 inline constexpr auto Product = detail::Product{};
 

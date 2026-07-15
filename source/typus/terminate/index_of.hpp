@@ -51,6 +51,11 @@ struct IndexOf final : tag::ValueTerminator {
  * type is not found, the returned index equals the size of the pipeline.
  *
  * @tparam U The type to search for.
+ *
+ * @par Example
+ * @code
+ * constexpr auto idx = typus::From<int, float, double> | typus::IndexOf<float>; // 1
+ * @endcode
  */
 template <typename U>
 inline constexpr auto IndexOf = detail::IndexOf<U>{};

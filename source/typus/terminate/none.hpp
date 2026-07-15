@@ -42,6 +42,12 @@ struct None final : tag::ValueTerminator {
  * returns a boolean value. Returns true for an empty pipeline.
  *
  * @tparam Predicate The combinator used as the condition for each type.
+ *
+ * @par Example
+ * @code
+ * // true
+ * constexpr bool no_ints = typus::From<float, double> | typus::None<typus::Is<std::is_integral>>;
+ * @endcode
  */
 template <model::Combinator auto Predicate>
 inline constexpr auto None = detail::None<Predicate>{};

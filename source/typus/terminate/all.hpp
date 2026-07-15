@@ -42,6 +42,11 @@ struct All final : tag::ValueTerminator {
  * returns a boolean value. Returns true for an empty pipeline.
  *
  * @tparam Predicate The combinator used as the condition for each type.
+ *
+ * @par Example
+ * @code
+ * constexpr bool res = typus::From<int, int> | typus::All<typus::Is<std::is_integral>>; // true
+ * @endcode
  */
 template <model::Combinator auto Predicate>
 inline constexpr auto All = detail::All<Predicate>{};
