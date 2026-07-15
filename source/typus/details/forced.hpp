@@ -1,3 +1,8 @@
+/**
+ * @file forced.hpp
+ * @author SeveraTheDuck
+ * @brief Internal utility to apply the Force combinator to an anchored type.
+ */
 #pragma once
 
 #include "type_of.hpp"

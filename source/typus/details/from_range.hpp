@@ -1,3 +1,8 @@
+/**
+ * @file from_range.hpp
+ * @author SeveraTheDuck
+ * @brief Reflection utility to convert ranges of meta::info into Thunks.
+ */
 #pragma once
 
 #include <typus/base/thunk.hpp>

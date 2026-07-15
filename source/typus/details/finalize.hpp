@@ -1,3 +1,8 @@
+/**
+ * @file finalize.hpp
+ * @author SeveraTheDuck
+ * @brief Utility to resolve anchored pipelines into their resulting types.
+ */
 #pragma once
 
 #include "forced.hpp"

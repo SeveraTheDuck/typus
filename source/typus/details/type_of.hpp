@@ -1,3 +1,8 @@
+/**
+ * @file type_of.hpp
+ * @author SeveraTheDuck
+ * @brief Shorthand for extracting the clean type of auto value.
+ */
 #pragma once
 
 #include <type_traits>

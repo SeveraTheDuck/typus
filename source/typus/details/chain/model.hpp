@@ -1,3 +1,8 @@
+/**
+ * @file model.hpp
+ * @author SeveraTheDuck
+ * @brief Internal concepts for detecting and categorizing Chains.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -22,7 +27,7 @@ struct IsChain<Chain<Lhs, Rhs>> final : std::true_type {};
 }  // namespace impl
 
 template <typename C>
-concept IsChain = impl::IsChain<C>::value;
+concept IsChain = impl::IsChain<std::remove_cvref_t<C>>::value;
 
 template <typename C>
 concept AnchoredChain = IsChain<C> && HasAnchorTag<C>;

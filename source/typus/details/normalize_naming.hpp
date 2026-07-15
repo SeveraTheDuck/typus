@@ -1,3 +1,8 @@
+/**
+ * @file normalize_naming.hpp
+ * @author SeveraTheDuck
+ * @brief Utilities for compatibility between STL snake_case and Typus CamelCase traits.
+ */
 #pragma once
 
 #include <concepts>

@@ -1,3 +1,8 @@
+/**
+ * @file chain.hpp
+ * @author SeveraTheDuck
+ * @brief Core AST node for lazy pipeline composition.
+ */
 #pragma once
 
 #include "tag.hpp"
@@ -32,13 +37,13 @@ using ChainBase = std::conditional_t
  *
  * Chain is the only product of `operator|`: it records "apply @p Rhs after
  * @p Lhs" without evaluating anything. Nesting of chains forms the whole
- * pipeline; evaluation is performed exclusively by Fold.
+ * pipeline; evaluation is performed exclusively by typus::Force.
  *
  * The role of a chain is decided structurally (via ChainBase) and expressed
  * through its base tag:
  *
  * 1. **Anchored**: @p Lhs carries data (a Thunk, or recursively an anchored
- *    chain). The chain is a *value*: it can be evaluated by Fold / Get /
+ *    chain). The chain is a *value*: it can be evaluated by Force / Get /
  *    Materialize, but Apply is constrained away.
  * 2. **Combinator**: @p Lhs is itself a combinator, so no data is bound yet.
  *    The chain is a *function* over Thunks: applying it pipes the input
@@ -58,7 +63,7 @@ template <typename Lhs, typename Rhs>
 struct [[nodiscard]] Chain final : ChainBase<Lhs, Rhs> {
  private:
   static_assert(
-      model::Combinator<Lhs> || model::Anchored<Lhs>,
+      model::PipeExpr<Lhs>,
       "typus: Chain head must be a Thunk anchor, a combinator, or another chain");
 
   template <typename T>

@@ -1,3 +1,8 @@
+/**
+ * @file unwrap.hpp
+ * @author SeveraTheDuck
+ * @brief Extracts the underlying type from a Singleton.
+ */
 #pragma once
 
 #include <typus/base/singleton.hpp>

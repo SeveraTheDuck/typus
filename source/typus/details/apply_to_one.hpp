@@ -1,3 +1,8 @@
+/**
+ * @file apply_to_one.hpp
+ * @author SeveraTheDuck
+ * @brief Utility for applying a pipeline to a single type wrapper.
+ */
 #pragma once
 
 #include "finalize.hpp"
