@@ -9,6 +9,8 @@
 
 #include <typus/model/thunk.hpp>
 
+#include <cstddef>
+
 namespace typus::base {
 
 /**
