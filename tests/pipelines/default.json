@@ -9,7 +9,15 @@
       "presets": ["dev", "dev-asan"]
     },
     {
+      "label": "typus_terminate_unit",
+      "presets": ["dev", "dev-asan"]
+    },
+    {
       "label": "typus_combine_unit",
+      "presets": ["dev", "dev-asan"]
+    },
+    {
+      "label": "typus_complex_unit",
       "presets": ["dev", "dev-asan"]
     }
   ]
