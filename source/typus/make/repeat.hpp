@@ -7,6 +7,7 @@
 
 #include <typus/base/thunk.hpp>
 
+#include <array>
 #include <cstddef>
 #include <meta>
 
