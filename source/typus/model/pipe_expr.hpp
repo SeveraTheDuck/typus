@@ -1,11 +1,11 @@
 #pragma once
 
-#include "chain.hpp"
-#include "thunk.hpp"
+#include "anchored.hpp"
+#include "combinator.hpp"
 
 namespace typus::model {
 
-template <typename T>
-concept PipeExpr = Thunk<T> || Chain<T>;
+template <typename E>
+concept PipeExpr = Anchored<E> || Combinator<E>;
 
-}
+}  // namespace typus::model

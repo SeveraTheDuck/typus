@@ -2,6 +2,7 @@
 
 #include "tag.hpp"
 
+#include <typus/base/singleton.hpp>
 #include <typus/model/thunk.hpp>
 
 namespace typus {
@@ -17,7 +18,7 @@ struct At final : tag::Combinator {
   template <typename... Ts>
     requires(N < sizeof...(Ts))
   struct Impl<base::Thunk<Ts...>> {
-    using Type = base::Thunk<Ts...[N]>;
+    using Type = base::Singleton<Ts...[N]>;
   };
 
  public:

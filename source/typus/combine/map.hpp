@@ -2,22 +2,28 @@
 
 #include "tag.hpp"
 
+#include <typus/base/singleton.hpp>
 #include <typus/base/thunk.hpp>
 #include <typus/model/thunk.hpp>
+
+#include <typus/details/apply_to_one.hpp>
 
 namespace typus {
 
 namespace detail {
 
-template <template <typename> typename F>
+template <auto Pipeline>
 struct Map final : tag::Combinator {
  private:
+  template <typename T>
+  using MapOne = ApplyToOneResult<Pipeline, T>;
+
   template <typename>
   struct Impl;
 
   template <typename... Ts>
   struct Impl<base::Thunk<Ts...>> {
-    using Type = base::Thunk<typename F<Ts>::type...>;
+    using Type = base::Thunk<MapOne<Ts>...>;
   };
 
  public:
@@ -28,9 +34,14 @@ struct Map final : tag::Combinator {
 }  // namespace detail
 
 /**
- * Usage: typus::From<int, double, char> | typus::Map<std::add_pointer>
+ * Usage: typus::From<int&, double>
+ *        | typus::Map
+ *          <
+ *            typus::Fn<std::remove_cvref> |
+ *            typus::Fn<std::add_pointer>
+ *          >
  */
-template <template <typename> typename F>
-inline constexpr auto Map = detail::Map<F>{};
+template <model::Combinator auto Pipeline>
+inline constexpr auto Map = detail::Map<Pipeline>{};
 
 }  // namespace typus

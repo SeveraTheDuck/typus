@@ -19,7 +19,4 @@ struct IsThunk<base::Thunk<Ts...>> : std::true_type {};
 template <typename T>
 concept Thunk = detail::IsThunk<std::remove_cvref_t<T>>::value;
 
-template <typename Op, typename T>
-concept AppliesTo = Thunk<T> && requires { typename Op::template Apply<T>; };
-
 }  // namespace typus::model

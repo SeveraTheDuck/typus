@@ -1,5 +1,8 @@
 #pragma once
 
+#include "tag.hpp"
+
+#include <typus/base/singleton.hpp>
 #include <typus/model/thunk.hpp>
 
 namespace typus {
@@ -18,7 +21,7 @@ struct Back final : tag::Combinator {
     static constexpr auto Size = sizeof...(Ts);
 
    public:
-    using Type = base::Thunk<Ts...[Size - 1]>;
+    using Type = base::Singleton<Ts...[Size - 1]>;
   };
 
  public:

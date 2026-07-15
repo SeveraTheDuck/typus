@@ -2,13 +2,16 @@
 
 #include "tag.hpp"
 
-#include <typus/model/pipe_expr.hpp>
+#include <typus/base/thunk.hpp>
+#include <typus/model/anchored.hpp>
+
+#include <typus/details/chain/chain.hpp>
 
 namespace typus {
 
 namespace detail {
 
-struct Fold final : tag::Combinator {
+struct Force final : tag::Combinator {
  private:
   template <typename /*T*/>
   struct Impl;
@@ -19,17 +22,17 @@ struct Fold final : tag::Combinator {
   };
 
   template <typename Lhs, typename Rhs>
-  struct Impl<base::Chain<Lhs, Rhs>> {
+  struct Impl<Chain<Lhs, Rhs>> {
     using Type = Rhs::template Apply<typename Impl<Lhs>::Type>;
   };
 
  public:
-  template <model::PipeExpr T>
+  template <model::Anchored T>
   using Apply = Impl<T>::Type;
 };
 
 }  // namespace detail
 
-inline constexpr auto Fold = detail::Fold{};
+inline constexpr auto Force = detail::Force{};
 
 }  // namespace typus

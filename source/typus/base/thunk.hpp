@@ -3,6 +3,6 @@
 namespace typus::base {
 
 template <typename... /*Ts*/>
-struct Thunk final {};
+struct [[nodiscard]] Thunk final {};
 
 }  // namespace typus::base

@@ -8,7 +8,7 @@ namespace detail {
 
 using Front = At<0>;
 
-}
+}  // namespace detail
 
 inline constexpr auto Front = detail::Front{};
 

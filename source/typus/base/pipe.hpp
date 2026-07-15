@@ -1,24 +1,28 @@
 #pragma once
 
-#include "chain.hpp"
-
-#include <typus/model/combinator.hpp>
+#include <typus/model/anchored.hpp>
+#include <typus/model/operation.hpp>
 #include <typus/model/pipe_expr.hpp>
 #include <typus/model/terminator.hpp>
 
-#include <typus/combine/fold.hpp>
+#include <typus/details/chain/chain.hpp>
+#include <typus/details/forced.hpp>
+#include <typus/details/normalize_naming.hpp>
 
-namespace typus::base {
+namespace typus::tag {  // god forbid ADL
 
-template <model::PipeExpr Lhs, model::Combinator Rhs>
-consteval auto operator|(Lhs, Rhs) -> Chain<Lhs, Rhs> {
+// Lazy, composes chains of evaluation
+template <model::PipeExpr Lhs, model::Operation Rhs>
+[[nodiscard]] consteval auto operator|(Lhs, Rhs) noexcept -> detail::Chain<Lhs, Rhs> {
   return {};
 }
 
-template <model::PipeExpr Lhs, model::Terminator Rhs>
-consteval auto operator|(Lhs, Rhs) {
-  using Pipeline = Chain<Lhs, Rhs>;
-  return detail::Fold::Apply<Pipeline>::value;
+// Eager, triggers only when value and terminator present
+template <model::Anchored Lhs, model::Terminator Rhs>
+[[nodiscard]] consteval auto operator|(Lhs, Rhs) {
+  using Pipeline = detail::Chain<Lhs, Rhs>;
+  using Applied = detail::Forced<Pipeline>;
+  return detail::NormalizeValue<Applied>::Value;
 }
 
-}  // namespace typus::base
+}  // namespace typus::tag

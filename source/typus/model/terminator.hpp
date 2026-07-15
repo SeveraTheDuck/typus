@@ -9,4 +9,4 @@ namespace typus::model {
 template <typename T>
 concept Terminator = std::derived_from<T, tag::ValueTerminator>;
 
-}
+}  // namespace typus::model

@@ -3,3 +3,5 @@ add_subdirectory(combine)
 add_subdirectory(make)
 add_subdirectory(model)
 add_subdirectory(terminate)
+
+add_subdirectory(details)
