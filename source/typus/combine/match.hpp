@@ -76,9 +76,9 @@ struct Match final : tag::Combinator {
   template <typename>
   struct Impl;
 
-  template <typename... Ts>
-  struct Impl<base::Thunk<Ts...>> {
-    using Type = base::Thunk<typename FirstMatch<Ts, Cases...>::Type...>;
+  template <typename T>
+  struct Impl<base::Singleton<T>> {
+    using Type = base::Thunk<typename FirstMatch<T, Cases...>::Type>;
   };
 
  public:

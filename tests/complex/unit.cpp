@@ -33,10 +33,12 @@ TEST(complex, integration) {
       >
     | CleanArithmetic
     | typus::SortBySize
-    | typus::Match
-      < typus::Case<typus::Is<Small>, SmallBox>
-      , typus::Case<typus::Is<std::is_pointer>, PtrBox>
-      , typus::Default<BigBox>
+    | typus::Map
+      < typus::Match
+        < typus::Case<typus::Is<Small>, SmallBox>
+        , typus::Case<typus::Is<std::is_pointer>, PtrBox>
+        , typus::Default<BigBox>
+        >
       >
     ;
   // clang-format on
