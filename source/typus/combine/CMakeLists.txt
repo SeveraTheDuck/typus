@@ -1,5 +1,36 @@
 target_sources(
         ${PROJECT_NAME}
         INTERFACE FILE_SET HEADERS BASE_DIRS ${${PROJECT_NAME}_INCLUDE_ROOT}
-        FILES at.hpp back.hpp front.hpp tag.hpp fold.hpp map.hpp sort.hpp reverse.hpp filter.hpp match.hpp predicate.hpp
+        FILES
+        and.hpp
+        append.hpp
+        at.hpp
+        back.hpp
+        bind.hpp
+        chunk.hpp
+        concat.hpp
+        drop.hpp
+        enumerate.hpp
+        filter.hpp
+        find.hpp
+        flat_map.hpp
+        flatten.hpp
+        fn.hpp
+        force.hpp
+        front.hpp
+        is.hpp
+        map.hpp
+        match.hpp
+        not.hpp
+        or.hpp
+        pair.hpp
+        prepend.hpp
+        reverse.hpp
+        sort.hpp
+        split_by.hpp
+        tag.hpp
+        take.hpp
+        unique.hpp
+        unpack.hpp
+        zip.hpp
 )
