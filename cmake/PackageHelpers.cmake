@@ -17,12 +17,10 @@ function(setup_install)
   # FILE_SET HEADERS installs public headers and rewrites the target's include dir to the
   # INSTALL_INTERFACE location automatically.
   install(
-    TARGETS ${PROJECT_NAME} project_options
+    TARGETS ${PROJECT_NAME}
     EXPORT ${PROJECT_NAME}Targets
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-            FILE_SET HEADERS
-            DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    FILE_SET HEADERS
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   )
 
   # Export the target set with the project namespace, so consumers link

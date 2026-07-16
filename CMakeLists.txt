@@ -34,8 +34,6 @@ setup_lto()
 setup_project_options()
 apply_sanitizers()
 
-include(UserOptions OPTIONAL)
-
 include(Coverage)
 
 # Generate <typus/version.hpp> into the build tree from version.txt.
@@ -47,6 +45,7 @@ configure_file(
 include(CTest)
 
 add_subdirectory(source)
+include(UserOptions OPTIONAL)
 
 if(BUILD_TESTING)
   include(TestHelpers)
