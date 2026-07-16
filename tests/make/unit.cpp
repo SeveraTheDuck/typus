@@ -25,6 +25,12 @@ TEST(make, from) {
     , base::Thunk<int, double>
     >
   );
+
+  static_assert(std::same_as
+    < detail::TypeOf<From<>>
+    , base::Empty
+    >
+  );
   // clang-format on
 }
 
@@ -42,6 +48,12 @@ TEST(make, iota) {
   static_assert(std::same_as
     < detail::TypeOf<Iota<0>>
     , base::Empty
+    >
+  );
+
+  static_assert(std::same_as
+    < detail::TypeOf<Iota<1>>
+    , base::Singleton<std::integral_constant<std::size_t, 0>>
     >
   );
   // clang-format on
@@ -62,6 +74,12 @@ TEST(make, repeat) {
   static_assert(std::same_as
     < detail::TypeOf<Repeat<double, 0>>
     , base::Empty
+    >
+  );
+
+  static_assert(std::same_as
+    < detail::TypeOf<Repeat<int, 1>>
+    , base::Singleton<int>
     >
   );
   // clang-format on
@@ -94,6 +112,20 @@ TEST(make, pair) {
   static_assert(std::same_as
     < detail::TypeOf<Pair<int, float>>
     , base::Thunk<int, float>
+    >
+  );
+  // clang-format on
+}
+
+TEST(make, pipeable) {
+  // clang-format off
+  static_assert(
+    (Iota<3> | Size) == 3
+  );
+
+  static_assert(std::same_as
+    < Materialize<Repeat<int, 2> | Append<float>>
+    , base::TypeTuple<base::Thunk<int, int, float>>
     >
   );
   // clang-format on
