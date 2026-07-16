@@ -44,7 +44,9 @@ struct Product final : tag::ValueTerminator {
  * @brief Multiplies the numeric values exposed by the types in the pipeline.
  *
  * This eager terminator expects the types in the pipeline to expose a static
- * constant value (via `::value` or `::Value`). It folds them using multiplication.
+ * constant value (via `::value` or `::Value`). It folds them using
+ * multiplication. If the pipeline is empty, defaults to returning
+ * `std::size_t{1}`.
  *
  * @par Example
  * @code

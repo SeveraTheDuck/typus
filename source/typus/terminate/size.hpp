@@ -35,8 +35,10 @@ struct Size final : tag::ValueTerminator {
 /**
  * @brief Returns the total number of types currently held in the pipeline.
  *
- * This eager terminator forces the evaluation of the AST and returns a
- * compile-time integer representing the count of the resulting types.
+ * This eager terminator expects the types in the pipeline to expose a static
+ * constant value (via `::value` or `::Value`). It folds them using
+ * addition. If the pipeline is empty, defaults to returning
+ * `std::size_t{0}`.
  *
  * @par Example
  * @code
