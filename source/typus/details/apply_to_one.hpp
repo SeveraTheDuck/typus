@@ -1,7 +1,11 @@
 /**
  * @file apply_to_one.hpp
  * @author SeveraTheDuck
- * @brief Utility for applying a pipeline to a single type wrapper.
+ * @brief Applies a pipeline to one type: the shared element-level primitive.
+ *
+ * Builds Singleton<T> | Pipeline and forces it. This is the common mechanism
+ * behind Map (per-element transform) and predicates (Holds); the primitive
+ * itself is agnostic to what the result means.
  */
 #pragma once
 

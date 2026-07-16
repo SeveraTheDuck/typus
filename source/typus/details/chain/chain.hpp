@@ -10,6 +10,7 @@
 #include <typus/model/anchored.hpp>
 #include <typus/model/combinator.hpp>
 #include <typus/model/operation.hpp>
+#include <typus/model/pipe_expr.hpp>
 #include <typus/model/terminator.hpp>
 #include <typus/model/thunk.hpp>
 
