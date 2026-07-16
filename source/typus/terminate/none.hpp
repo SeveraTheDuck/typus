@@ -1,0 +1,55 @@
+/**
+ * @file none.hpp
+ * @author SeveraTheDuck
+ * @brief Eager terminator that checks if no elements satisfy a predicate.
+ */
+#pragma once
+
+#include "tag.hpp"
+
+#include <typus/base/thunk.hpp>
+#include <typus/model/combinator.hpp>
+#include <typus/model/thunk.hpp>
+
+#include <typus/details/holds.hpp>
+
+#include <type_traits>
+
+namespace typus {
+
+namespace detail {
+
+template <auto Predicate>
+struct None final : tag::ValueTerminator {
+ private:
+  template <typename>
+  struct Impl;
+
+  template <typename... Ts>
+  struct Impl<base::Thunk<Ts...>> : std::bool_constant<(!Holds<Predicate, Ts> && ...)> {};
+
+ public:
+  template <model::Thunk T>
+  using Apply = Impl<T>;
+};
+
+}  // namespace detail
+
+/**
+ * @brief Evaluates whether strictly zero types in the pipeline satisfy the given predicate.
+ *
+ * This is an eager terminator. When piped into, it triggers evaluation and
+ * returns a boolean value. Returns true for an empty pipeline.
+ *
+ * @tparam Predicate The combinator used as the condition for each type.
+ *
+ * @par Example
+ * @code
+ * // true
+ * constexpr bool no_ints = typus::From<float, double> | typus::None<typus::Is<std::is_integral>>;
+ * @endcode
+ */
+template <model::Combinator auto Predicate>
+inline constexpr auto None = detail::None<Predicate>{};
+
+}  // namespace typus
