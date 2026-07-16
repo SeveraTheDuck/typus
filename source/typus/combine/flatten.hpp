@@ -55,15 +55,17 @@ struct Flatten final : tag::Combinator {
 }  // namespace detail
 
 /**
- * @brief Merges nested Thunks into a single, flat Thunk.
+ * @brief Merges one level of nested Thunks into a single, flat Thunk.
  *
- * All types currently in the pipeline must themselves be Thunks. This is
- * commonly used after mapping a function that produces multiple types per element.
+ * Flattens exactly one level: every element of the input must itself be a
+ * Thunk, and a mixed pipeline (some elements not Thunks) is a compile error,
+ * not a partial pass. Deeper nesting is left untouched as in a monadic join.
+ * Commonly used after a Map that produces multiple types per element (see FlatMap).
  *
  * @par Example
  * @code
- * constexpr auto p = typus::From<typus::base::Thunk<int>, typus::base::Thunk<float>> |
- * typus::Flatten;
+ * constexpr auto p = typus::From<typus::base::Thunk<int>, typus::base::Thunk<float>>
+ *                  | typus::Flatten;
  * // Result: Thunk<int, float>
  * @endcode
  */

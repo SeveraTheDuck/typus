@@ -66,7 +66,7 @@ struct FirstMatch {
   static_assert(FirstHit < NumOfCases, "typus::Match: no case matched and no Default provided");
 
  public:
-  using Type = typename Cases...[FirstHit] ::Type;
+  using Type = Cases...[FirstHit] ::Type;
 };
 
 template <typename... Cases>

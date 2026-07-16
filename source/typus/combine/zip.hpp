@@ -13,7 +13,11 @@
 #include <typus/model/anchored.hpp>
 #include <typus/model/thunk.hpp>
 
+#include <typus/details/finalize.hpp>
+#include <typus/details/type_of.hpp>
+
 #include <algorithm>
+#include <cstddef>
 #include <utility>
 
 namespace typus {

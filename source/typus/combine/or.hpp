@@ -6,8 +6,14 @@
 #pragma once
 
 #include "tag.hpp"
+
+#include <typus/base/singleton.hpp>
 #include <typus/model/combinator.hpp>
+#include <typus/model/thunk.hpp>
+
 #include <typus/details/holds.hpp>
+
+#include <type_traits>
 
 namespace typus {
 

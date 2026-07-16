@@ -64,8 +64,8 @@ struct Bind final : tag::Combinator {
 /**
  * @brief Combines each type in the current pipeline with every type in another pipeline.
  *
- * This performs a type-level Cartesian product. The result is a single flattened
- * pipeline containing `base::Pair<L, R>` elements.
+ * A type-level Cartesian product. The result is a pipeline of `base::Pair<L, R>`
+ * elements (each pair being a two-element Thunk).
  *
  * @tparam Other The anchored pipeline to bind against.
  *

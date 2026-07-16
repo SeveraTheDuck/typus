@@ -45,7 +45,7 @@ struct Enumerate final : tag::Combinator {
  *
  * @par Example
  * @code
- * // Thunk<Pair<int, 0>, Pair<float, 1>>
+ * // Thunk<Pair<int, ic<0>>, Pair<float, ic<1>>>
  * constexpr auto p = typus::From<int, float> | typus::Enumerate;
  * @endcode
  */

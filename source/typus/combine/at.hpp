@@ -10,6 +10,8 @@
 #include <typus/base/singleton.hpp>
 #include <typus/model/thunk.hpp>
 
+#include <cstddef>
+
 namespace typus {
 
 namespace detail {

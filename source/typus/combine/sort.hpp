@@ -50,11 +50,12 @@ struct SortBy final : tag::Combinator {
  * @brief Sorts the pipeline using a custom comparator and projection.
  *
  * Functions provided must operate on `std::meta::info` at compile-time.
+ * Order of projection-equal types is unspecified.
  *
  * @par Example
  * @code
  * constexpr auto p = typus::From<int, char, double> | typus::SortBy<std::ranges::less{},
- * std::meta::size_of>;
+ *                                                                   std::meta::size_of>;
  * // Result: Thunk<char, int, double>
  * @endcode
  */
@@ -63,6 +64,8 @@ inline constexpr auto SortBy = detail::SortBy<Cmp, Proj>{};
 
 /**
  * @brief Sorts the pipeline by type size in ascending order.
+ *
+ * Order of projection-equal types is unspecified.
  *
  * @par Example
  * @code
@@ -75,6 +78,8 @@ inline constexpr auto SortBySize = detail::SortBy<std::ranges::less{}, std::meta
 /**
  * @brief Sorts the pipeline by type size in descending order.
  *
+ * Order of projection-equal types is unspecified.
+ *
  * @par Example
  * @code
  * constexpr auto p = typus::From<char, double, int> | typus::SortBySizeDec;
@@ -85,6 +90,8 @@ inline constexpr auto SortBySizeDec = detail::SortBy<std::ranges::greater{}, std
 
 /**
  * @brief Sorts the pipeline by type alignment requirement in ascending order.
+ *
+ * Order of projection-equal types is unspecified.
  *
  * @par Example
  * @code

@@ -64,14 +64,14 @@ struct SplitBy final : tag::Combinator {
  * @brief Splits the pipeline into multiple Thunks using a predicate as a delimiter.
  *
  * The element that matches the predicate is discarded, acting as the boundary
- * between the new chunks.
+ * between the new chunks. Consecutive or edge delimiters produce empty chunks.
  *
  * @tparam Predicate The condition identifying the split boundaries.
  *
  * @par Example
  * @code
  * constexpr auto p = typus::From<int, float, void, double> |
- * typus::SplitBy<typus::Is<std::is_void>>;
+ *                    typus::SplitBy<typus::Is<std::is_void>>;
  * // Result: Thunk<Thunk<int, float>, Thunk<double>>
  * @endcode
  */

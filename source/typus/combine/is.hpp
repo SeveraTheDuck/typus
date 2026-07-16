@@ -7,7 +7,12 @@
 
 #include "tag.hpp"
 
+#include <typus/base/thunk.hpp>
+#include <typus/model/thunk.hpp>
+
 #include <typus/details/normalize_naming.hpp>
+
+#include <type_traits>
 
 namespace typus {
 

@@ -20,6 +20,7 @@ namespace typus {
  *
  * @par Example
  * @code
+ * // Imagine you have a reflection-based `GetChildren` predicate, returning a `Thunk<Children...>`
  * constexpr auto p = typus::From<NodeA, NodeB> | typus::FlatMap<GetChildren>;
  * @endcode
  */

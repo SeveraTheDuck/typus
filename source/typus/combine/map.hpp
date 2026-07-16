@@ -7,7 +7,6 @@
 
 #include "tag.hpp"
 
-#include <typus/base/singleton.hpp>
 #include <typus/base/thunk.hpp>
 #include <typus/model/thunk.hpp>
 
