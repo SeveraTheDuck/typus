@@ -10,7 +10,7 @@
 namespace typus {
 
 /**
- * @brief An empty pipeline thunk containing no types.
+ * @brief An empty Thunk containing no types.
  *
  * Useful as a starting point for operations that build up types incrementally,
  * or to explicitly represent the absence of types in a pipeline.

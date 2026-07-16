@@ -59,6 +59,9 @@ struct Not final : tag::Combinator {
 /**
  * @brief Logical inversion of a predicate result.
  *
+ * Not is postfix: it inverts the verdict already produced upstream, so it
+ * belongs after a predicate (`Is<P> | Not`), never before one.
+ *
  * @par Example
  * @code
  * constexpr auto p = typus::Map<typus::Is<std::is_integral> | typus::Not>;

@@ -27,7 +27,7 @@ consteval auto Iota() noexcept {
 }  // namespace detail
 
 /**
- * @brief Generates a Thunk containing a sequence of sizes from 0 to N-1.
+ * @brief Generates a Thunk containing a sequence of indices from 0 to N-1.
  *
  * The generated types are strictly `std::integral_constant<std::size_t, I>`.
  * Useful for index-based operations like Zip or mapping over element positions.

@@ -1,5 +1,18 @@
+/**
+ * @file typus.hpp
+ * @author SeveraTheDuck
+ * @brief Umbrella header: includes the entire Typus library.
+ *
+ * Typus is a C++26 header-only type-list metaprogramming library. Pipelines are
+ * built lazily with `operator|` over a `base::Thunk`, composed of combinators,
+ * and terminated by extraction into a value or a frozen `base::TypeTuple`.
+ *
+ * Include this to pull in everything; individual headers may be included
+ * directly for finer-grained dependencies.
+ */
 #pragma once
 
+// Core types and the pipe operator: Thunk, TypeTuple, aliases, operator|.
 #include "base/empty.hpp"
 #include "base/pair.hpp"
 #include "base/pipe.hpp"
@@ -7,6 +20,7 @@
 #include "base/thunk.hpp"
 #include "base/type_tuple.hpp"
 
+// Combinators: lazy Thunk -> Thunk transformations composed mid-pipeline.
 #include "combine/and.hpp"
 #include "combine/append.hpp"
 #include "combine/at.hpp"
@@ -39,6 +53,7 @@
 #include "combine/unpack.hpp"
 #include "combine/zip.hpp"
 
+// Makers: entry points that lift raw types into a pipeline.
 #include "make/empty.hpp"
 #include "make/from.hpp"
 #include "make/iota.hpp"
@@ -46,6 +61,7 @@
 #include "make/repeat.hpp"
 #include "make/singleton.hpp"
 
+// Concepts: the role vocabulary (Thunk, Anchored, Combinator, Terminator, ...).
 #include "model/anchored.hpp"
 #include "model/combinator.hpp"
 #include "model/operation.hpp"
@@ -53,6 +69,7 @@
 #include "model/terminator.hpp"
 #include "model/thunk.hpp"
 
+// Terminators: extract a value, or freeze the pipeline into a TypeTuple.
 #include "terminate/all.hpp"
 #include "terminate/any.hpp"
 #include "terminate/contains.hpp"

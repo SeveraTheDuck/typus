@@ -38,7 +38,7 @@ struct Or final : tag::Combinator {
 }  // namespace detail
 
 /**
- * @brief Logical OR of two predicate results.
+ * @brief Logical OR of two predicates, applied to the same element
  *
  * @par Example
  * @code

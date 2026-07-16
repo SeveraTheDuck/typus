@@ -23,7 +23,8 @@ namespace typus::tag {  // god forbid ADL
  * Chain (anchored value vs. combinator) is decided structurally from its
  * head; this operator does not force evaluation.
  *
- * @tparam Lhs An anchored expression (Thunk / anchored Chain) or a Combinator.
+ * @tparam Lhs The left-hand side expression: anchored data (Thunk or anchored
+ *             chain) or a Combinator being composed point-free.
  * @tparam Rhs A Combinator or Terminator to record next.
  * @return A detail::Chain node representing the composed AST.
  */
@@ -41,7 +42,7 @@ template <model::PipeExpr Lhs, model::Operation Rhs>
  *
  * @tparam Lhs The anchored pipeline carrying data.
  * @tparam Rhs The terminating operation.
- * @return The computed value of the evaluation.
+ * @return The computed value, read through ::value / ::Value normalization.
  */
 template <model::Anchored Lhs, model::Terminator Rhs>
 [[nodiscard]] consteval auto operator|(Lhs, Rhs) {

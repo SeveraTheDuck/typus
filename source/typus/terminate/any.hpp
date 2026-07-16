@@ -45,8 +45,7 @@ struct Any final : tag::ValueTerminator {
  *
  * @par Example
  * @code
- * constexpr bool has_int = typus::From<float, int> | typus::Any<typus::Is<std::is_integral>>; //
- * true
+ * constexpr bool ints = typus::From<float, int> | typus::Any<typus::Is<std::is_integral>>; // true
  * @endcode
  */
 template <model::Combinator auto Predicate>

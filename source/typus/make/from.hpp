@@ -19,7 +19,8 @@ namespace typus {
  *
  * @par Example
  * @code
- * constexpr auto types = typus::From<int, float, double>;
+ * constexpr auto types = typus::From<int, float, double> | typus::Reverse;
+ * // Thunk<double, float, int>
  * @endcode
  */
 template <typename... Ts>

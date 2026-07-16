@@ -1,7 +1,7 @@
 /**
  * @file front.hpp
  * @author SeveraTheDuck
- * @brief Utility combinator to extract the first type from the pipeline.
+ * @brief Combinator that extracts the first type from the pipeline.
  */
 #pragma once
 

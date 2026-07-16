@@ -38,7 +38,7 @@ struct And final : tag::Combinator {
 }  // namespace detail
 
 /**
- * @brief Logical AND of two predicate results.
+ * @brief Logical AND of two predicates, applied to the same element
  *
  * @par Example
  * @code

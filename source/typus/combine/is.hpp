@@ -37,7 +37,10 @@ struct Is final : tag::Combinator {
 }  // namespace detail
 
 /**
- * @brief Adapts a type-trait to a Typus combinator.
+ * @brief Adapts a unary type-trait into a predicate combinator.
+ *
+ * Wraps the trait's ::value / ::Value verdict into a Singleton of
+ * std::bool_constant, making any standard or user trait pipeable.
  *
  * @par Example
  * @code
