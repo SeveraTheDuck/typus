@@ -10,9 +10,9 @@ namespace typus::base {
 /**
  * @brief A lightweight, compile-time container for a variadic pack of types.
  *
- * Thunk serves as the primary data carrier throughout the type-level pipelines.
- * It is designed as a phantom type (having no runtime state) specifically
- * for holding and transferring type sequences during compile-time evaluation.
+ * The primary data carrier of the library: the normal form that combinators
+ * consume and produce. A phantom type with no runtime state, existing only to
+ * hold and transfer type sequences during compile-time evaluation.
  *
  * @tparam Ts The parameter pack of types.
  */

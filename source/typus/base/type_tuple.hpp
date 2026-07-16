@@ -14,10 +14,11 @@
 namespace typus::base {
 
 /**
- * @brief Primary template for TypeTuple.
+ * @brief The frozen, immutable result of Materialize.
  *
- * TypeTuple acts as a structured interface to extract and inspect types
- * from an evaluated Thunk.
+ * A read-only interface to inspect an evaluated Thunk. Constructible only from
+ * a Thunk (the primary template is undefined), so a TypeTuple cannot be
+ * hand-built or converted back into a Thunk — freezing is one-way by design.
  *
  * @tparam Thunk A type satisfying the model::Thunk concept.
  */
@@ -32,9 +33,12 @@ struct TypeTuple;
 template <typename... Ts>
 struct TypeTuple<Thunk<Ts...>> final {
   /**
-   * @brief Rebinds the types into a target variadic template.
+   * @brief Rebinds the contained types into a target variadic template.
    *
-   * @tparam Target The template class to apply the types to (e.g., std::tuple, std::variant).
+   * The one-way door out of typus into any external template (std::tuple,
+   * std::variant, rusty::Enum, ...). Does not produce a new TypeTuple.
+   *
+   * @tparam Target The template to apply the types to.
    */
   template <template <typename...> typename Target>
   using As = Target<Ts...>;

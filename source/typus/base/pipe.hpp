@@ -19,12 +19,13 @@ namespace typus::tag {  // god forbid ADL
 /**
  * @brief Composes a lazy pipeline chain.
  *
- * This operator builds the Abstract Syntax Tree (AST) of the type-level
- * pipeline without evaluating it.
+ * Builds the pipeline AST without evaluating it. The role of the resulting
+ * Chain (anchored value vs. combinator) is decided structurally from its
+ * head; this operator does not force evaluation.
  *
- * @tparam Lhs The left-hand side expression (either an anchored Thunk or a Combinator).
- * @tparam Rhs The right-hand side operation (Combinator or Terminator).
- * @return A detail::Chain representing the composed pipeline AST.
+ * @tparam Lhs An anchored expression (Thunk / anchored Chain) or a Combinator.
+ * @tparam Rhs A Combinator or Terminator to record next.
+ * @return A detail::Chain node representing the composed AST.
  */
 template <model::PipeExpr Lhs, model::Operation Rhs>
 [[nodiscard]] consteval auto operator|(Lhs, Rhs) noexcept -> detail::Chain<Lhs, Rhs> {
@@ -32,15 +33,15 @@ template <model::PipeExpr Lhs, model::Operation Rhs>
 }
 
 /**
- * @brief Eagerly evaluates a pipeline.
+ * @brief Eagerly evaluates an anchored pipeline against a terminator.
  *
- * This operator triggers when an anchored pipeline (containing actual type data)
- * meets a Terminator operation. It forces the evaluation of the entire pipeline
- * and returns the resulting value.
+ * Triggers only when anchored data meets a Terminator: forces the whole
+ * pipeline and returns the resulting value. A combinator left-hand side does
+ * not match here: terminating a data-less function is not composition.
  *
- * @tparam Lhs The left-hand side anchored pipeline.
- * @tparam Rhs The right-hand side Terminator.
- * @return The computed value of the pipeline evaluation.
+ * @tparam Lhs The anchored pipeline carrying data.
+ * @tparam Rhs The terminating operation.
+ * @return The computed value of the evaluation.
  */
 template <model::Anchored Lhs, model::Terminator Rhs>
 [[nodiscard]] consteval auto operator|(Lhs, Rhs) {
